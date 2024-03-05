@@ -19,7 +19,8 @@ model Administrador{
   nome String
   cpf String 
   data_nascimento DateTime
-  id_endereco Int 
+  id_endereco Int
+  endereco Endereco @relation(fields: [id_endereco], references: [id_endereco], onUpdate: Cascade) 
 }
 
 model Cliente{
@@ -35,6 +36,7 @@ model Funcionario{
   cpf String 
   data_nascimento DateTime
   id_endereco Int 
+  endereco Endereco @relation(fields: [id_endereco], references: [id_endereco], onUpdate: Cascade)
 }
 
 model Fornecedor{
@@ -43,6 +45,7 @@ model Fornecedor{
   cpf String 
   telefone String
   id_endereco Int 
+  endereco Endereco @relation(fields: [id_endereco], references: [id_endereco], onUpdate: Cascade)
 }
 
 model Endereco{
@@ -51,7 +54,10 @@ model Endereco{
   cep String 
   numero String
   cidade String
-  bairro String 
+  bairro String
+  localiza_fornecedor Fornecedor[] 
+  localiza_funcionario Funcionario[]
+  localiza_administrador Administrador[]
 }
 
 model Produto{
